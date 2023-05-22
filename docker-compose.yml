@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  db-master:
+    container_name: db-master
+    hostname: db-master
+    image: mysql:debian
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - ./sql/master:/docker-entrypoint-initdb.d:ro
+    mem_limit: 256M
+    networks:
+      macvlan:
+        ipv4_address: 192.168.120.21
+
+  
+networks:
+  macvlan:
+    name: macvlan
+    driver: macvlan
+    driver_opts:
+      parent: ens33
+    ipam:
+      config:
+        - subnet: 192.168.120.0/24
+          gateway: 192.168.120.1
