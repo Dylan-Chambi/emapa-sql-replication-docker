@@ -28,7 +28,7 @@ secure-file-priv= NULL
 bind-address=0.0.0.0
 server-id=1
 log_bin=mysql-bin
-binlog_do_db=emapa_ventas
+binlog_do_db=emapa_productos
 
 # Custom config should go here
 !includedir /etc/mysql/conf.d/

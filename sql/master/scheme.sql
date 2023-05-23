@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS emapa_ventas;
+CREATE DATABASE IF NOT EXISTS emapa_productos;
 
-USE emapa_ventas;
+USE emapa_productos;
 
 CREATE TABLE IF NOT EXISTS categoria (
     id_categoria INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
