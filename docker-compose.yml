@@ -8,10 +8,15 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
     cap_add:
       - SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: root123
+      MYSQL_LOG_CONSOLE: "true"
     volumes:
       - ./config/master.cnf:/etc/mysql/my.cnf:ro
       - ./sql/master/replication_user.sql:/docker-entrypoint-initdb.d/replication_user.sql:ro
@@ -19,8 +24,8 @@ services:
       - ./sql/master/values.sql:/docker-entrypoint-initdb.d/values.sql:ro
     mem_limit: 512M
     networks:
-      macvlan:
-        ipv4_address: 192.168.120.21
+      bridge-db:
+        ipv4_address: 192.168.20.21
 
 
   db-slave-1:
@@ -30,17 +35,22 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    ports:
+      - "3307:3306"
+    expose:
+      - 3307
     cap_add:
       - SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: root123
+      MYSQL_LOG_CONSOLE: "true"
     volumes:
-      - ./config/slave.cnf:/etc/mysql/my.cnf:ro
+      - ./config/slave1.cnf:/etc/mysql/my.cnf:ro
       - ./sql/slave:/docker-entrypoint-initdb.d:ro
     mem_limit: 512M
     networks:
-      macvlan:
-        ipv4_address: 192.168.120.22
+      bridge-db:
+        ipv4_address: 192.168.20.22
 
   db-slave-2:
     container_name: db-slave-2
@@ -49,25 +59,28 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    ports:
+      - "3308:3306"
+    expose:
+      - 3308
     cap_add:
       - SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: root123
+      MYSQL_LOG_CONSOLE: "true"
     volumes:
-      - ./config/slave.cnf:/etc/mysql/my.cnf:ro
+      - ./config/slave2.cnf:/etc/mysql/my.cnf:ro
       - ./sql/slave:/docker-entrypoint-initdb.d:ro
     mem_limit: 512M
     networks:
-      macvlan:
-        ipv4_address: 192.168.120.23
+      bridge-db:
+        ipv4_address: 192.168.20.23
   
 networks:
-  macvlan:
-    name: macvlan
-    driver: macvlan
-    driver_opts:
-      parent: ens33
+  bridge-db:
+    name: bridge-db
+    driver: bridge
     ipam:
       config:
-        - subnet: 192.168.120.0/24
-          gateway: 192.168.120.2
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
