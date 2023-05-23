@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS categoria (
     PRIMARY KEY (id_categoria)
 );
 
-CREATE TABLE IF NOT EXISTS marca (
-    id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
-    nombre_marca VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id_marca)
+CREATE TABLE IF NOT EXISTS empresa (
+    id_empresa INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
+    nombre_empresa VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_empresa)
 );
 
 CREATE TABLE IF NOT EXISTS almacen (
@@ -32,12 +32,12 @@ CREATE TABLE IF NOT EXISTS cliente (
     PRIMARY KEY (nit_ci)
 );
 
-CREATE TABLE IF NOT EXISTS empresa (
-    id_empresa INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
-    nombre_empresa VARCHAR(100) NOT NULL,
-    marca_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_empresa),
-    FOREIGN KEY (marca_id) REFERENCES marca (id_marca)
+CREATE TABLE IF NOT EXISTS marca (
+    id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
+    nombre_marca VARCHAR(100) NOT NULL,
+    empresa_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_marca)
+    FOREIGN KEY (empresa_id) REFERENCES empresa (id_empresa)
 );
 
 CREATE TABLE IF NOT EXISTS proveedor (
