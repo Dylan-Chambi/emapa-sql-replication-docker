@@ -12,11 +12,29 @@ services:
       MYSQL_ROOT_PASSWORD: root123
     volumes:
       - ./sql/master:/docker-entrypoint-initdb.d:ro
-    mem_limit: 256M
+      - ./config/master.cnf:/etc/mysql/my.cnf:ro
+    mem_limit: 512M
     networks:
       macvlan:
         ipv4_address: 192.168.120.21
 
+
+  db-slave-1:
+    container_name: db-slave-1
+    hostname: db-slave-1
+    image: mysql:debian
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - ./sql/slave:/docker-entrypoint-initdb.d:ro
+      - ./config/slave.cnf:/etc/mysql/my.cnf:ro
+    mem_limit: 512M
+    networks:
+      macvlan:
+        ipv4_address: 192.168.120.22
   
 networks:
   macvlan:
