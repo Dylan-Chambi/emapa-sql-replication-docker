@@ -6,6 +6,18 @@ This project aims to create the database for a sales and purchasing control syst
 
 The database schema present in this project is designed based on the document "#2 Documento Base de Contratacion" of the contract object "Adquisicion De Un Sistema Informatico Para El Control De Productos Y Ventas Para La Gerencia De Comercializacion" with CUSE file "22-0047-34-1210323-1-1", which can be found at [SICOES Official Website](https://www.sicoes.gob.bo/portal/contrataciones/busqueda/convocatorias.php?tipo=convNacional).
 
+### Project Requirements
+
+The current project should satisfy the following functional requirements ddefined on the previous document:
+* Sells Module
+* Invoices Module
+* Purchases and Consignments Module
+* Product Management Module
+* Inventory and Warehouse Management Module
+* Module Function Options
+* Module for the Creation of Products with Contract and Agreement
+* Support Module
+* Reports module
 
 ## Requirements
 
@@ -184,7 +196,7 @@ This diagram can be downloaded at this [link.](https://drive.google.com/file/d/1
 |      | nombres_cliente   | VARCHAR(50)     |
 |      | apellido_paterno  | VARCHAR(50)     |
 |      | apellido_materno  | VARCHAR(50)     |
-|      | correo_cliente     | VARCHAR(30)     |
+|      | correo_cliente    | VARCHAR(30)     |
 |      | telefono_cliente  | VARCHAR(20)     |
 |      | extension_ci      | VARCHAR(5)      |
 
