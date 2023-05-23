@@ -67,7 +67,7 @@ Tested clients:
 
 ## UML Diagram
 
-![UML Diagram](https://raw.githubusercontent.com/Dylan-Chambi/ProyectoBDAvanzadas/main/doc/database_scheme_uml.svg?token=GHSAT0AAAAAACC7NJDGCEXRSLBQN2JNIUUCZDMIQCA)
+![UML Diagram](./doc/database_scheme_uml.svg)
 
 This diagram can be downloaded at this [link.](https://drive.google.com/file/d/1eTbLLRmW8CyRixEevjMI6SeHs-z6a7nt/view?usp=sharing)
 
