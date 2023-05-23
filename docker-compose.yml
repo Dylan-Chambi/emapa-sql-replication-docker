@@ -41,6 +41,25 @@ services:
     networks:
       macvlan:
         ipv4_address: 192.168.120.22
+
+  db-slave-2:
+    container_name: db-slave-2
+    hostname: db-slave-2
+    image: mysql:debian
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    cap_add:
+      - SYS_NICE
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - ./config/slave.cnf:/etc/mysql/my.cnf:ro
+      - ./sql/slave:/docker-entrypoint-initdb.d:ro
+    mem_limit: 512M
+    networks:
+      macvlan:
+        ipv4_address: 192.168.120.23
   
 networks:
   macvlan:
