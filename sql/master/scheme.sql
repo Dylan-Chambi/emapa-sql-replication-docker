@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS marca (
     id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
     nombre_marca VARCHAR(100) NOT NULL,
     empresa_id INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_marca)
+    PRIMARY KEY (id_marca),
     FOREIGN KEY (empresa_id) REFERENCES empresa (id_empresa)
 );
 
